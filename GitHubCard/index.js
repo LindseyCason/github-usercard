@@ -3,8 +3,27 @@
            <your name>
 */
 let cards = document.querySelector('.cards');
-const followersArray = ["lindseycason","tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
+let followersArray = ["lindseycason","tetondan", "dustinmyers", "justsml", "luishrd", "bigknell"];
 
+// //stretch ONE
+axios.get("https://api.github.com/users/LindseyCason/followers")
+  .then(response=>{
+// console.log(response) 
+response.data.forEach(person=>{
+  let followerURL = person.url;
+  axios.get(followerURL)
+  .then( response =>{
+    // console.log(response)
+    let newFollower = makeCard(response);
+    cards.appendChild(newFollower);
+}) }) })
+.catch(error =>{
+  console.log(error);
+})
+
+
+  
+// //stretch
 
 
 
@@ -17,12 +36,7 @@ axios.get('https://api.github.com/users/'+user)
 })
 .catch(error =>{
   console.log(error);
-})
-
-})
-
-
-
+})})
 
 
 function makeCard(response){
@@ -65,7 +79,7 @@ function makeCard(response){
    following.textContent = 'Following: ' + response.data.following
    bio.textContent = "Bio: " + response.data.bio
 
-   //stretch
+   //stretch TWO
    const expandedDiv = document.createElement('div');
    info.appendChild(expandedDiv);
    expandedDiv.classList.add('expandedDiv');
@@ -98,20 +112,8 @@ function makeCard(response){
     card.style.height = '23rem';
   }
 
-  // button.addEventListener('click', e =>{
-  //   if (button.classList !== 'card-open'){
-     
-  //   }
-  // })
     })
-    
   })
- 
- 
- 
- 
- 
- 
    return card;
  }
 
@@ -165,3 +167,4 @@ function makeCard(response){
   luishrd
   bigknell
 */
+
