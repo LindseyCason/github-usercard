@@ -27,6 +27,30 @@ response.data.forEach(person=>{
 
 
 
+
+//just an additional test below of an instructors following
+axios.get("https://api.github.com/users/justsml/following")
+  .then(response=>{
+// console.log(response) 
+response.data.forEach(person=>{
+  let followingURL = person.url;
+  axios.get(followingURL)
+  .then( response =>{
+    // console.log(response)
+    let newFollowing = makeCard(response);
+    cards.appendChild(newFollowing);
+}) }) })
+.catch(error =>{
+  console.log(error);
+})
+
+////////endtest
+
+
+
+//////////
+
+
 followersArray.forEach( user =>{
 axios.get('https://api.github.com/users/'+user)
 .then( response =>{
