@@ -122,6 +122,12 @@ body {
   font-style: italic;
   margin: 3px 0 10px;
 }
-
-
+.expandedDiv{
+  display: 'none';
+}
+.button {
+  background-color: #1fc8db;
+  padding: 5px;
+  font-weight: bolder;
+}
 
